@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Robert Simpson</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+<style>
+.def {
+display: block;
+font-style: italic;
+font-size: 18px;
+}
+.def:before {
+content: "Definition. ";
+font-weight: bold;
+font-style: normal;
+}
+.def[text]:before {
+content: "Definition (" attr(text) ") ";
+}
+  </style>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" style="font-size: 25px;">Robert Simpson</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+              <li ><a class="navbut" href="index.html">Home</a></li>
+              <li><a href="thesis.html">Thesis</a></li>
+              <li><a href="resume.html">Resume</a></li>
+              <li><a href="project.html">Projects</a></li>
+              <li><a href="aboutme.html">About Me</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+      <div>
+        <img src="Images/alt_background2.jpg" width="100%" height="220px" alt="">
+      </div>
+      
+<div class="row thesis-background">
+    <div class="col align-items-center" style="width=75%; padding-right:5%; padding-left:5%;">
+            <h2>Chaos in Lotka-Volterra Food Webs</h2>
+              <p>
+                The standard Lotka-Volterra model is a canonical example of a two-dimensional system of ordinary differential equations.
+                \begin{align*}
+                {\dot x}_1 = \alpha x_1 - \beta x_1 x_2\\
+                {\dot x}_2 = -\gamma x_2 + \mu x_1 x_2
+                \end{align*}
+
+                \(x_1\) is the prey population and \(x_2\) the predator population. However, ecosystems are complex. Predators can exist along the hierarchy, as another
+                animals own prey. We can increase the dimensionality of the system by introducing a third species. This species can take on many different roles in the ecosystem: 
+                predation, parasitism, symbiosis. We wish to examine the case of a super-predator, an animal which all other animals in the ecosystem. To model this behavior,
+                we can modify the Lotka-Volterra model.
+
+                \begin{align*}
+                {\dot x}_1 &= x_1 -  \alpha_1 x_1  - \alpha_2 x_1 x_2 - \alpha_3 x_1 x_3 \\
+                {\dot x}_2 &= -\alpha_4 x_2 + \alpha_5 x_1 x_2 - \alpha_6 x_2 x_3 \\
+                {\dot x}_3 &= -\alpha_7 x_3 + \alpha_8 x_2 x_3 + \alpha_9 x_1 x_3 \\
+                \end{align*}
+                
+                To study this solution, we can generate different simulations for a variety of parameter values. We than can study their behavior through Poincare Maps. First, let
+                us non-dimensionalize the equation.
+
+                \begin{align*}
+                {\dot x}_1 &=  x_1( 1 - x_1 - x_2 - x_3) \\
+                {\dot x}_2 &=  x_2(-{\tilde \alpha_1} + {\tilde \alpha_2} x_1 -  {\tilde \alpha_3}x_3) \\
+                {\dot x}_3 &= x_3(-{\tilde \alpha_4} + {\tilde \alpha_5}x_2 + {\tilde \alpha_6}x_1 ) \\
+                \end{align*}
+
+                Now, we can begin bifurcation analysis.
+
+                Let the vector of parameters \({\bf \tilde \alpha} = [5, {\tilde \alpha_2}, 4, 3, 4, 20]\). We can then slowly increase the parameter \({\tilde \alpha_2}\), the predation
+                of the predator upon the prey, and see how it changes the overall trajectory of the system. 
+                <h3>\({\tilde \alpha_2} = 7\)</h3>
+
+              </p>
+              <div class="row align-items-center ">
+                <div class="col text-center">
+                  <p>Here, we have the DMD results for the a Thij model simulation.</p>
+                  <img src="Images/threeode7-1.png" alt="DMD2" style="display:inline; padding-top: 5%" alt="Me" height="400">
+                </div>
+
+                <div class="row align-items-center ">
+                  <div class="col text-center">
+                    <p>Here, we have the DMD results for the a Thij model simulation.</p>
+                    <img src="Images/threeode7-2.png" alt="DMD2" style="display:inline; padding-top: 5%" alt="Me" height="600">
+                  </div>
+
+                  <div class="row align-items-center ">
+                    <div class="col text-center">
+                      <p>Here, we have the DMD results for the a Thij model simulation.</p>
+                      <img src="Images/threeode7-3.png" alt="DMD2" style="display:inline; padding-top: 5%" alt="Me" height="400">
+                    </div>
+
+
+                    <h3>\({\tilde \alpha_2} =12\)</h3>
+
+
+                    <div class="row align-items-center ">
+                      <div class="col text-center">
+                        <p>Here, we have the DMD results for the a Thij model simulation.</p>
+                        <img src="Images/threeode12-1.png" alt="DMD2" style="display:inline; padding-top: 5%" alt="Me" height="400">
+                      </div>
+                    </div>
+                      <div class="row align-items-center ">
+                        <div class="col text-center">
+                          <p>Here, we have the DMD results for the a Thij model simulation.</p>
+                          <img src="Images/threeode12-2.png" alt="DMD2" style="display:inline; padding-top: 5%" alt="Me" height="600">
+                        </div>
+      
+                        <div class="row align-items-center ">
+                          <div class="col text-center">
+                            <p>Here, we have the DMD results for the a Thij model simulation.</p>
+                            <img src="Images/threeode12-3.png" alt="DMD2" style="display:inline; padding-top: 5%" alt="Me" height="600">
+                          </div>
+                        </div>
+                      <h3>\({\tilde \alpha_2} =18\)</h3>
+
+                          <div class="row align-items-center ">
+                            <div class="col text-center">
+                              <p>Here, we have the DMD results for the a Thij model simulation.</p>
+                              <img src="Images/threeode18-1.png" alt="DMD2" style="display:inline; padding-top: 5%" alt="Me" height="400">
+                            </div>
+                          </div>
+                            <div class="row align-items-center ">
+                              <div class="col text-center">
+                                <p>Here, we have the DMD results for the a Thij model simulation.</p>
+                                <img src="Images/threeode18-2.png" alt="DMD2" style="display:inline; padding-top: 5%" alt="Me" height="600">
+                              </div>
+                            </div>
+                              <div class="row align-items-center ">
+                                <div class="col text-center">
+                                  <p>Here, we have the DMD results for the a Thij model simulation.</p>
+                                  <img src="Images/threeode18-3.png" alt="DMD2" style="display:inline; padding-top: 5%" alt="Me" height="400">
+                                </div>
+                              </div>
+                        <h3>\({\tilde \alpha_2} =18\)</h3>
+
+                                <div class="row align-items-center ">
+                                  <div class="col text-center">
+                                    <p>Here, we have the DMD results for the a Thij model simulation.</p>
+                                    <img src="Images/threeode34-1.png" alt="DMD2" style="display:inline; padding-top: 5%" alt="Me" height="400">
+                                  </div>
+                                </div>
+                                  <div class="row align-items-center ">
+                                    <div class="col text-center">
+                                      <p>Here, we have the DMD results for the a Thij model simulation.</p>
+                                      <img src="Images/threeode34-2.png" alt="DMD2" style="display:inline; padding-top: 5%" alt="Me" height="600">
+                                    </div>
+                                  </div>
+                                    <div class="row align-items-center ">
+                                      <div class="col text-center">
+                                        <p>Here, we have the DMD results for the a Thij model simulation.</p>
+                                        <img src="Images/threeode34-3.png" alt="DMD2" style="display:inline; padding-top: 5%" alt="Me" height="400">
+                                      </div>     
+                                    </div>
+              <h2>The Hastings Model</h2>
+              <p>The Hastings model is a well-established model known to give rise to a strange attractor given the right parameter selection.
+                We define the Hastings model as such:
+              </p>
+            
+    </div>
+</div>
+</body>
+</html>

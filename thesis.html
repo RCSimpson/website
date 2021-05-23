@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Robert Simpson</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+<style>
+.def {
+display: block;
+font-style: italic;
+font-size: 18px;
+border: solid;
+border-width: 2px;
+}
+.def:before {
+content: "Definition. ";
+font-weight: bold;
+font-style: normal;
+}
+.def[text]:before {
+content: "Definition (" attr(text) ") ";
+}
+  </style>
+</head>
+<body >
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" style="font-size: 25px;">Robert Simpson</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+              <li ><a class="navbut" href="index.html">Home</a></li>
+              <li><a href="thesis.html">Thesis</a></li>
+              <li><a href="resume.html">Resume</a></li>
+              <li><a href="project.html">Projects</a></li>
+              <li><a href="aboutme.html">About Me</a></li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+<div class="thesis-background" style="margin-top: 5.4%; margin-left: 2%; margin-right:2%; margin-bottom: 5%;">
+        <div class="row align-items-center ">
+          <div class="col align-items-center" style=" padding-top:2%; padding-right:10%; padding-left:10%;">
+            <h2 style="font-weight: bolder;">An Overview of My Thesis</h2>
+            <p>
+              Here, I offer a brief overview of my thesis, Dynamic Mode Decomposition and Network Evolution, as part of the Applied Mathematics MS at San Diego State University.
+              The full thesis can be found on my <a href="https://github.com/RCSimpson/Thesis">github</a>. My thesis is studies local changes in 
+              large, complex networks by using the data-driven methods: the Dynamic Mode Decomposition and Kernel Dynamic Mode Decomposition. We extract the DMD and KDMD modes,
+              which contain information regarding the dynamics of the system and find that overall the resulting modes are of low mode error and reconstruct the data moderately well.
+              Here, I offer a small synopsis of the networks I study and the Dynamic Mode Decomposition. 
+            </p>
+    
+            <h3 style="font-weight: bolder;">Graph Motifs</h3>
+            <p>
+              We're primarily interested in the dynamics of sub-patterns in networks over time. We calls these patterns motifs. 
+            </p>
+            <div class="def" text='Motif'> <p> Let \( G\) be graph and \(G''\) be an induced subgraph. If \(G''\) is isomorphic to \(G'\),
+              then we call \(G''\) and appearance of \(G'\). Given \(G'\) has some \(N \gg 0\) appearances, we call \(G'\) a motif. 
+            </div>
+            <p>
+              We are essentially interested in how often these structures appear in the network and wish to see how the this local structure changes given the 
+              addition of nodes and edges to a graph. We generate motif counts from the Barabasi-Albert model and the Thij Twitter model. Below is an example of some of the 
+              motifs we count.
+            </p>
+            <div class="text-center align-items-center">
+              <img src="Images/mega_motif.png" alt="" style="padding: 1%; border: solid;border-width: 2px ;background-color: white;" width="30%">
+            </div>
+            
+    
+            <h3 style="font-weight:bolder;">A Short Introduction to the Koopman Operator and DMD</h3>
+            <h4 style="font-weight: bold;">The Koopman Operator</h4>
+            <p> The Dynamic Mode Decomposition (DMD) offers a way to extract spatio-temporal structures from data sampled from a dynamical system. DMD is theoretically
+                underpinned by Koopman operator theory. This connection is weak with the standard DMD method, but can be strengthened by using variants of the DMD algorithm. 
+                We begin by defining the Koopman Operator \(K\).
+            </p> 
+    
+            <!-- <div class="def" text='The Koopman Operator'> <p> We define the Hilbert space of observables \(L_2(O) = L_2(\mathbb{R}^N,\mathbb{R}, \mu)\)
+                with an associated norm \( \int_{\mathbb{R}} |g(x)|^2 dx\), and an appropiately chosen measure \(\mu\). The Koopman Operator \( K: L_2(O) \rightarrow L_2(O)\)
+                is a mapping between the Hilbert space unto itself, such that
+                $$
+                    K(g(x_i)) = g(x_{i+1}) = g(F(x_i)), \quad g(x) \in L_2(O)
+                $$
+                where \(F: \mathcal{M} \rightarrow \mathcal{M}\) is a mapping on a smooth n-dimensional manifold.
+            </div> -->
+    
+            <p>In the case where \(F\) is a discrete non-linear time-flow map, the Koopman operator advances us forward 
+                one step in time. The Koopman operator is linear, but infinite-dimensional. It acts on all possible observable functions \(g(x)\). Thus we can effectively exchange a non-linear, finite-dimensional 
+                dynamical system for a linear, infinite-dimensional dynamical system. As the operator is linear, it has associated eigenfunctions \(\varphi(x)\) and eigenvalues \(\lambda\). We can write 
+                any observable as a linear combination of those eigenfunctions.
+                    $$
+                        g(x) = \sum^{\infty}_{k=1} \varphi_k(x)\xi_k
+                    $$
+                \(\xi_k\) is the Koopman mode associated with the \(k\)th eigenfunction. Now, as eigenfunctions are defined to satisfy \( K\varphi_k(x) = \lambda_k \varphi(x)\), we can advance foward in time like so:
+                $$
+                g(x_{i+1})=K(g(x_i)) = \sum^{\infty}_{k=1} \lambda_k \varphi_k(x_i)\xi_k
+                $$
+    
+                Advancing forward in time through the non-linear flow map is now a multiplication problem. The infinite-dimensionality still poses a problem. However, maybe a only a handful of eigen-tuples describe
+                most of the dynamics and we could find a reasonable approximation. To this end, we introduce DMD.
+            </p>
+            <h4 style="font-weight: bold;">The Dynamic Mode Decomposition</h4>
+            <p>We have a matrix of snapshots from the time-series of interest:
+    
+              $$
+              X = [x_1,x_2,\dots,x_n]
+              $$
+              
+              Let \(g(x_k)\) be a finite dictionary of observables formed from the state space. 
+              We introduce the operator \(A\):
+              
+              $$
+              A g = A g(x_k) = g(x_{k+1}),
+              $$
+              
+              \(A\) advances measurements along the flow \(F\) by \(\Delta t\). Beginning with our data snapshot matrix composed of the relevant observables, we write
+              
+              $$
+              G = [g(x_0), g(x_1), g(x_2), \dots ,g(x_n)] = [g_1,g_2,\dots, g_n],
+              $$
+              
+              which we can then break into two matrices:
+              
+              \begin{align*}
+                  & G_+ = [g_1, g_2, g_3, \dots g_n]\\
+                  & G_- = [g_0, g_1, g_2, \dots g_{n-1}]\\
+              \end{align*}
+              
+              The matrix \(G_+\) is the matrix \(G_-\) taken forward one step in time. 
+              The matrix \(A\) above relates the two matrices.
+              
+              $$
+              G_+ = AG_-
+              $$
+              
+              Finding \(A\) means solving the optimization problem
+              
+              $$
+              \|G_+ - {A}G_- \|_{F}
+              $$
+              
+              where \(\| \cdot \|_{F}\) denotes the Frobenius norm. The 
+              solution to the optimization problem is found using the Moore-Penrose psuedoinverse.
+              
+              $$
+              A = G_+ G^{\dagger}_{-} ,
+              $$
+              We compute the r-rank Singular Value Decomposition (SVD) and generate a low-rank approximation
+              of the matrix \(A\) which we shall call \({\tilde A}\). 
+    
+                \begin{align*}
+                    G_+ &= {\tilde A}G_- \\
+                    &= {\tilde A}U_rS_rV_r \quad \text{by SVD} \\ 
+                G_+ V^{*}_r S^{-1}_r U^{*}_r &= {\tilde A} \\
+                \end{align*}
+    
+              \(U^{*}_r\) and \(V^{*}_r\) are the conjugate transposes of the matrices \(U_r\) and \(V_r\). An eigendecomposition on the left-hand side results in the 
+              DMD modes \(\xi_j\) and eigenvalues \(\mu_j\). The DMD modes represent spatio-temporal structures. Their eigenvalues represent their associated temporal behavior. 
+              The approximated eigenfunctions can be found by solving the linear-algebra problem:
+              $$
+              G = \Xi \Phi
+              $$
+              where the columns of \(\Xi\) contain the DMD modes. 
+            </p>
+            <h3>A Few Select Results</h3>
+            <p> 
+              We applied the DMD algorithm to time-series produced by the Barabasi-Albert and the Thij model networks. Here are examples of the DMD modes, eigenvalues, and approximated eigenfunctions.
+              The top subplot shows the associated eigenvalues. The columns of the second subplot represent the individual modes, showing a temporal relationship between motifs. The last
+              subplot in the bottom row, shows the approximated eigenfunction values (phi modes) over time, or how much each DMD mode contributes to the dynamics. Directly below, 
+              we have the DMD results for a Barabasi-Albert simulation.
+            </p>
+        </div>
+      </div>
+
+    <div class="row align-items-center ">
+      <div class="col text-center">
+        <img src="Images/DMDm2k300eigen-2.png" alt="DMD1" style="display:inline; margin-top: 5%;margin-bottom: 5%; " alt="Me" width=30%>
+      </div>
+
+    
+      <div class="col text-center">
+        <p>Here, we have the DMD results for the a Thij model simulation.</p>
+        <img src="Images/DMD_twitter_080809-2.png" alt="DMD2" style="display:inline;" alt="Me" width=30%>
+      </div>
+
+      <div class="row" style=" padding-right:5%; padding-left:5%; padding-top: 5%; padding-bottom: 5%;">
+          <p>
+            I highly recommending reading more of my thesis on my Github as this is only a brief overview of both the objects we study and the methods
+            used to analyze them!
+          </p>
+      </div>
+    </div>
+
+</body>
+</html>

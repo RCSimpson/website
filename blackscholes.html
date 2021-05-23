@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Robert Simpson</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+<style>
+.def {
+display: block;
+font-style: italic;
+font-size: 18px;
+}
+.def:before {
+content: "Definition. ";
+font-weight: bold;
+font-style: normal;
+}
+.def[text]:before {
+content: "Definition (" attr(text) ") ";
+}
+  </style>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" style="font-size: 25px;">Robert Simpson</a>
+          </div>
+          <div class="collapse navbar-collapse " id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+              <li ><a class="navbut" href="index.html">Home</a></li>
+              <li><a href="thesis.html">Thesis</a></li>
+              <li><a href="resume.html">Resume</a></li>
+              <li><a href="project.html">Projects</a></li>
+              <li><a href="aboutme.html">About Me</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div>
+        <img src="Images/alt_background3.jpg" width="100%" height="220px" alt="">
+      </div>
+      
+
+<div class="fluid-container thesis-background">
+    <div class="row">
+        <div class="col align-items-center" style="width:75%; padding-right:5%; padding-left:5%;">
+                <h2>Finite Differencing and the Black-Scholes Partial Differential Equation</h2>
+                <h3>The Finite-Difference Method</h3>
+                <p>There are many ways to numerically solve partial differential equations. One of the most straightforward ways, is to use the method 
+                    of finite differences. Suppose our partial differential equation is a function of time and space. We can discretize in the spatial and time 
+                    dimensions to produce a grid. With the boundary conditions and the intial condition, we have enough information to advance the initial condition
+                    forward in time. Suppose \(U(x,t)\) is a partial differential equation. Let \( h\) denote the spatial step-size and \(k\) the temporal step-size. We
+                    can like so approximate the time derivative:
+
+                    $$
+                       U_{t} \approx \frac{v^{m}_{l} - v^{m}_{l-1}}{k}
+                    $$
+
+                    where \(v^{m}_{l}\) represents the discretization of \(u(x,t)\) at the \(m\)-\(j\) point on the discretized grid. We can also approximate
+                    the spatial derivatives like so:
+                    
+                    $$
+                       U_{x} \approx \frac{v^{m}_{l} - v^{m-1}_{l}}{h}
+                    $$
+
+                    $$
+                       U_{xx} \approx \frac{v^{m}_{l} -2v^{m}_{l} + v^{m-1}_{l}}{2h}
+                    $$
+                </p>
+                <h3>The Black-Scholes Partial Differential Equation</h3>
+                <p>
+                    An option is a financial derivative that gives one the privelege, but not the obligation, to purchase or sell a specified number of assets before or on a certain date at a specified price.
+                    If the option purchaser has the right to purchase the underlying asset, we call it a 'call' option. If one has the right to sell the underlying asset, we call it a 'put' option. An option contract 
+                    gains or loses value as the underlying asset changes in market price and interet rate, and loses value as one approaches the expiration date. Merton Scholes and Fischer Black 
+                    used this to form the Black-Scholes equation, a PDE which describes the fair value price of an option.
+                    $$
+                    V_t + \frac{\sigma^2}{2}S^2V_{SS} - rV + rSV_{S} = 0, \quad V(S,M)=0
+                    $$
+
+                    \(V(S,t) \) denotes the fair value price, \(S\) is the price of the underlying asset, \(\sigma\) is the volatility of the underlying asset, \(r \) represents the market interest rate, and \(M\) 
+                    is the maturity date. The boundary condition depends on whether the option is a call or a put option. The 
+                    Black-Scholes PDE does have a closed, analytic solution. One can transform the question into the heat equation using the correct change of variables. However, this is not the case for more 
+                    complicated Black-Scholes variants, which may not have an analytic solution. Using the finite difference schemes above we can generate an explicit scheme to approximate \(V\) along the discrete 
+                    grid.
+
+                    $$
+                       V_{t} \approx \frac{v^{m}_{l} - v^{m}_{l-1}}{k}
+                    $$
+                    
+                    $$
+                       V_{S} \approx \frac{v^{m}_{l} - v^{m-1}_{l}}{h}
+                    $$
+
+                    $$
+                       V_{SS} \approx \frac{v^{m}_{l} -2v^{m}_{l} + v^{m-1}_{l}}{2h}
+                    $$
+
+                    First, we wish to turn the maturation condition into an initial condition by using the change of variables \(t \rightarrow -t\). Then inserting these expressions into the Black-Scholes equation we have:
+
+                    \begin{align*} 
+                    \frac{v^{m}_{l} - v^{m}_{l-1}}{k} + \frac{\sigma^2 h i}{2}  \frac{v^{m}_{l} -2v^{m}_{l} + v^{m-1}_{l}}{2h} - rv^{m}_{l} + r h i \frac{v^{m}_{l} - v^{m-1}_{l}}{h} = 0
+                    \end{align*}
+
+                    where \(h i = m \quad \text{for } i=0,1,2 \dots N \).
+
+                    We can now rearrange these terms to collect the terms of \(v^{m}_{l}\), which gives use the equation
+
+                    $$
+                    v^{m+1}_{l} =  (1 - am^2)v^{m}_{l} + (a)v^{m}_{l+1} + (b)v^{m-1}_{l+1}
+                    $$
+
+                    Using the initial condition and boundary condition:
+
+                    $$
+                    v^{m}_{0} =0 \quad v^{m}_{0} = 0
+                    $$
+
+                    We can then solve for all \(v^{m}_{l}\)
+                </p>
+                
+        </div>
+    </div>
+</div>
+    
+<footer class="container-fluid bg-4 text-center">
+</footer>
+</body>
+</html>
