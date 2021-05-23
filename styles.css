@@ -1,0 +1,133 @@
+body {
+font: 40px Montserrat, sans-serif;
+line-height: 1.8;
+color: #000000;
+background-image: url(../Images/background8.jpg);
+background-size: 100%;
+background-attachment: fixed;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;"
+}
+
+p {font-size: 16px;}
+.margin {margin-bottom: 45px;}
+
+.bg-1 { 
+background-color: #1f2329c1;
+color: #ffffff;
+}
+
+.bg-2 { 
+background-color: rgba(16, 43, 68, 0.891); /* Dark Blue */
+color: #e7effa;
+}
+
+.bg-3 { 
+background-color:#1f2329c1; /* White */
+color: #ffffff;
+}
+
+.bg-4 { 
+background-color: #191c20c7; /* Black Gray */
+color: #fff;
+}
+
+.thesis-background {
+  color: #000000;
+  background-color: #ffffffec;
+}
+
+.container-fluid {
+padding-top: 40px;
+padding-bottom: 40px;
+align-items: center;
+vertical-align: middle;
+}
+
+.navbar {
+padding-top: 10px;
+padding-bottom: 10px;
+border: 0;
+border-radius: 0;
+margin-bottom: 0;
+font-size: 18px;
+letter-spacing: 5px;
+background-color: rgba(55, 147, 233, 0.796);
+}
+
+.navbar-nav  li a:hover {
+color: #ffffff !important;
+}
+
+.navbut {
+color: rgb(243, 236, 225);
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: rgb(4, 48, 54); /*Change active text color here*/
+}
+
+.navbar-default .navbar-brand {
+  color: rgba(0,0,0,.9);
+}
+
+h1{
+  font-size: 70px;
+}
+
+h3{
+  margin-top: 2%;
+  margin-bottom: 3%;
+}
+
+h4{
+  margin-top: 2%;
+  margin-bottom: 1%;
+}
+
+.navbar-brand{
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+}
+
+img {
+  pointer-events: none;
+ }
+
+ #outerContainer #mainContainer div.toolbar {
+  display: none !important; /* hide PDF viewer toolbar */
+}
+#outerContainer #mainContainer #viewerContainer {
+  top: 0 !important; /* move doc up into empty bar space */
+}
+
+.carousel{
+  width: 100%;
+  height: 700px;
+}
+
+.carousel-inner > .item > img {
+  margin: 0 auto;
+}
+
+.crop {
+  width: 200px;
+  height: 150px;
+  overflow: hidden;
+}
+
+.crop img {
+  width: 400px;
+  height: 300px;
+  margin: -75px 0 0 -100px;
+}
+
+.centered {
+  position: absolute;
+  top: 92%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-weight: bold;
+}
